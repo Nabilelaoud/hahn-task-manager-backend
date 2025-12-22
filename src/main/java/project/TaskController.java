@@ -17,7 +17,7 @@ public class TaskController {
         this.taskRepository = taskRepository;
     }
 
-    // 1) إضافة task لمشروع
+    // Ajouter une tâche à un projet
     @PostMapping("/{projectId}/tasks")
     public ResponseEntity<Task> addTaskToProject(@PathVariable Long projectId,
                                                  @RequestBody Task task) {
@@ -30,14 +30,14 @@ public class TaskController {
         return ResponseEntity.ok(saved);
     }
 
-    // 2) جلب جميع الـ tasks ديال مشروع
+    // Récupérer toutes les tâches du projet
     @GetMapping("/{projectId}/tasks")
     public ResponseEntity<List<Task>> getTasksForProject(@PathVariable Long projectId) {
         List<Task> tasks = taskRepository.findByProjectId(projectId);
         return ResponseEntity.ok(tasks);
     }
 
-    // 3) تحديث حالة task
+    // Mise à jour dutask
     @PutMapping("/tasks/{taskId}")
     public ResponseEntity<Task> updateTask(@PathVariable Long taskId,
                                            @RequestBody Task updated) {
@@ -56,14 +56,14 @@ public class TaskController {
         return ResponseEntity.ok(saved);
     }
 
-    // 4) حذف task
+    // suprimer task
     @DeleteMapping("/tasks/{taskId}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) {
         taskRepository.deleteById(taskId);
         return ResponseEntity.noContent().build();
     }
 
-    // 5) progress ديال المشروع
+    // 5) progress de projet
     @GetMapping("/{projectId}/progress")
     public ResponseEntity<ProjectProgressResponse> getProjectProgress(@PathVariable Long projectId) {
         Project project = projectRepository.findById(projectId)

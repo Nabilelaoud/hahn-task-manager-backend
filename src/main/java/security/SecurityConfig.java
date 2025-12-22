@@ -27,7 +27,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/login").permitAll()
                         .anyRequest().authenticated()
                 )
-                // نضيف الفيلتر ديال التوكن قبل الفيلتر ديال اليوزر/باس
+                // Ajouter le filtre de token avant le filtre UsernamePasswordAuthenticationFilter
                 .addFilterBefore(tokenAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

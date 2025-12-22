@@ -18,7 +18,7 @@ public class User {
 
     private String fullName;
 
-    // حقل للتوكن باش نستعملوه فـ Security
+    // le champ de token pour la securite Security
     @Column(unique = true)
     private String token;
 
